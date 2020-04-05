@@ -39,4 +39,4 @@
   tasks:
     - name: "Include ansible-role-fail2ban"
       include_role:
-        name: "ansible-role-fail2ban"
+        name: "sakibmoon.fail2ban"
