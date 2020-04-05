@@ -1,0 +1,10 @@
+# Ansible managed
+
+{% for section in action.sections %}
+[{{ section.name }}]
+
+{% for option in section.options %}
+{{ option.name }} = {{ option.value }}
+
+{% endfor %}
+{% endfor %}

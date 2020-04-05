@@ -1,0 +1,42 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    fail2ban_actionlist:
+      - name: actionone
+        sections:
+          - name: Definition
+            options:
+              - name: actionstart
+                value: action never start
+              - name: actionflush
+                value: never flush again
+          - name: Init
+            options:
+              - name: timestart
+                value: 0
+        file_ext: conf
+    fail2ban_filterlist:
+      - name: filterone
+        sections:
+          - name: Definition
+            options:
+              - name: actionstart
+                value: never start
+              - name: actionflush
+                value: never flush
+          - name: Init
+            options:
+              - name: timeout
+                value: 1000
+    fail2ban_services:
+      - name: "sshd"
+        enabled: "true"
+        port: "ssh"
+        filter: "sshd"
+        logpath: "/var/log/auth.log"
+        maxretry: 6
+  tasks:
+    - name: "Include ansible-role-fail2ban"
+      include_role:
+        name: "ansible-role-fail2ban"

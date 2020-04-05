@@ -1,0 +1,11 @@
+---
+- block:
+    - name: Define Action file Name
+      set_fact:
+        action_file: "{{ action.name }}.{{ action.file_ext|default('local') }}"
+
+    - name: Create Action in /etc/action.d/
+      template:
+        src: action.j2
+        dest: "/etc/fail2ban/action.d/{{ action_file }}"
+  when: action.name is defined and action.sections is defined

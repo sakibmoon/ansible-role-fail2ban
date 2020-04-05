@@ -1,0 +1,21 @@
+---
+- name: Install Fail2ban on Debian based system
+  apt:
+    name: fail2ban
+    state: present
+    update_cache: true
+  when: ansible_os_family == 'Debian'
+  notify: start and enable fail2ban service
+
+- name: Install Epel repo
+  yum:
+    name: epel-release
+    state: present
+  when: ansible_os_family == 'RedHat'
+
+- name: Install Fail2ban on RedHat based system
+  yum:
+    name: fail2ban
+    state: present
+  when: ansible_os_family == 'RedHat'
+  notify: start and enable fail2ban service

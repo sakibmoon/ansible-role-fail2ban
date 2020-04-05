@@ -1,0 +1,33 @@
+---
+# tasks file for ansible-role-fail2ban
+- name: Install fail2ban
+  import_tasks: install.yml
+
+- name: Fail2ban Config
+  template:
+    src: fail2ban_conf.j2
+    dest: "{{ fail2ban_confpath }}"
+
+- name: Fail2ban Jail Config
+  template:
+    src: jail_conf.j2
+    dest: "{{ fail2ban_jailpath }}"
+
+- name: Add fail2ban filters
+  include_tasks: filter.yml
+  loop: "{{ fail2ban_filterlist }}"
+  loop_control:
+    loop_var: filter
+
+- name: Add fail2ban actions
+  include_tasks: action.yml
+  loop: "{{ fail2ban_actionlist }}"
+  loop_control:
+    loop_var: action
+
+- name: Add fail2ban services
+  template:
+    src: services.j2
+    dest: /etc/fail2ban/jail.d/services.local
+  when: fail2ban_services is defined
+  notify: reload fail2ban service

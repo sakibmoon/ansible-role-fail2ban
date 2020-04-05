@@ -1,0 +1,27 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  tasks:
+  - name: Gather Package facts
+    package_facts:
+      manager: auto
+
+  - name: Fail2ban installed
+    assert:
+      that: "'fail2ban' in ansible_facts.packages"
+
+  - name: Gather Service facts
+    service_facts:
+
+  # - debug:
+  #     var: ansible_facts.services
+
+  - name: Fail2ban running
+    assert:
+      that: ansible_facts.services['fail2ban.service'].state == 'running'
+
+  - name: Fail2ban enabled
+    assert:
+      that: ansible_facts.services['fail2ban.service'].status == 'enabled'

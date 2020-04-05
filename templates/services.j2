@@ -1,0 +1,11 @@
+# Ansible managed
+{% for service in fail2ban_services %}
+
+{% for key, value in service.items() %}
+{% if key == 'name' %}
+[{{ value }}]
+{% else %}
+{{ key }} = {{ value }}
+{% endif %}
+{% endfor %}
+{% endfor %}

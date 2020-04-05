@@ -1,0 +1,34 @@
+---
+galaxy_info:
+  role_name: fail2ban
+  author: sakibmoon
+  description: An ansible role to install and manage Fail2ban
+
+  license: MIT
+
+  min_ansible_version: 2.6
+
+  platforms:
+    - name: EL
+      versions:
+        - 7
+        - 8
+    - name: Ubuntu
+      versions:
+        - trusty
+        - xenial
+        - bionic
+    - name: Debian
+      versions:
+        - jessie
+        - stretch
+        - buster
+
+
+  galaxy_tags:
+    - fail2ban
+    - system
+    - security
+    - networking
+
+dependencies: []

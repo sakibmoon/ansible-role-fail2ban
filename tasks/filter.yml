@@ -1,0 +1,11 @@
+---
+- block:
+    - name: Define Filter filename
+      set_fact:
+        filter_file: "{{ filter.name }}.{{ filter.file_ext|default('local') }}"
+
+    - name: Create Filter in /etc/filter.d/
+      template:
+        src: filter.j2
+        dest: "/etc/fail2ban/filter.d/{{ filter_file }}"
+  when: filter.name is defined and filter.sections is defined

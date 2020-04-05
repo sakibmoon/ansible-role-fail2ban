@@ -1,0 +1,33 @@
+---
+# defaults file for ansible-role-fail2ban
+fail2ban_confpath: /etc/fail2ban/fail2ban.local
+fail2ban_loglevel: ERROR
+fail2ban_logtarget: /var/log/fail2ban.log
+fail2ban_syslogsocket: auto
+fail2ban_socket: /var/run/fail2ban/fail2ban.sock
+fail2ban_pidfile: /var/run/fail2ban/fail2ban.pid
+fail2ban_dbfile: /var/lib/fail2ban/fail2ban.sqlite3
+fail2ban_dbpurgeage: 86400
+fail2ban_dbmaxmatches: 20
+fail2ban_stacksize: 0
+
+fail2ban_jailpath: /etc/fail2ban/jail.local
+fail2ban_ignoreself: true
+# fail2ban_ignoreip: system default
+# fail2ban_ignorecommand: system default(empty)
+fail2ban_ignorecache: disabled
+fail2ban_bantime: 600
+fail2ban_findtime: 600
+fail2ban_maxretry: 5
+fail2ban_backend: auto
+fail2ban_usedns: warn
+fail2ban_logencoding: auto
+fail2ban_mode: normal
+fail2ban_filter: '%(__name__)s[mode=%(mode)s]'
+# fail2ban_logtimezone: system default
+# fail2ban_banaction: system default
+# fail2ban_banaction_allports: system default
+fail2ban_action: '%(action_)s'
+# fail2ban_failregex: system default
+# fail2ban_ignoreregex: system default
+# fail2ban_maxmatches: system default
