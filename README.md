@@ -1,6 +1,7 @@
 Role Name
 =========
 
+[![Build Status](https://travis-ci.com/sakibmoon/ansible-role-fail2ban.svg?branch=master)](https://travis-ci.com/sakibmoon/ansible-role-fail2ban)    
 An ansible role to install and manage Fail2ban
 
 Requirements
