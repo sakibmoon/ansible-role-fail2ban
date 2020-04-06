@@ -168,10 +168,11 @@ Example Playbook
 
 The followng playbook install, enable fail2ban and add ssh jail
 
+``` yaml
     - hosts: servers
       vars:
         fail2ban_services:
-          - name: "ssh"
+          - name: "sshd"
             enabled: "true"
             port: "ssh"
             filter: "sshd"
@@ -179,6 +180,7 @@ The followng playbook install, enable fail2ban and add ssh jail
             maxretry: 6       
       roles:
          - sakibmoon.fail2ban
+```
 
 License
 -------
