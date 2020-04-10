@@ -18,12 +18,14 @@
   loop: "{{ fail2ban_filterlist }}"
   loop_control:
     loop_var: filter
+  when: fail2ban_filterlist is defined
 
 - name: Add fail2ban actions
   include_tasks: action.yml
   loop: "{{ fail2ban_actionlist }}"
   loop_control:
     loop_var: action
+  when: fail2ban_actionlist is defined
 
 - name: Add fail2ban services
   template:
